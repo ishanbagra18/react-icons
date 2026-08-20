@@ -260,7 +260,7 @@ a {
         0 1px 2px 0 rgba(0, 0, 0, 0.06);
       transition: background-color 150ms ease;
       &:hover {
-        background: #f3f3f3;
+        background: var(--color-gray-2);
       }
 
       .name {
