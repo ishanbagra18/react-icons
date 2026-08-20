@@ -127,6 +127,70 @@ import { IconContext } from "react-icons";
 | `attr`      | `undefined`           | Overwritten by other attributes    |
 | `title`     | `undefined`           | Icon description for accessibility |
 
+## Usage and Styling Examples
+
+### Inline Styling
+
+You can easily style your icons using inline styles, just like any other React component:
+
+```jsx
+import { FaBeer } from "react-icons/fa";
+
+function Question() {
+  return (
+    <h3>
+      Lets go for a <FaBeer style={{ color: 'blue', fontSize: '50px' }} />?
+    </h3>
+  );
+}
+```
+
+### Styling with Tailwind CSS
+
+If your project uses Tailwind CSS, you can apply Tailwind utility classes directly to the `className` prop:
+
+```jsx
+import { FaBeer } from "react-icons/fa";
+
+function Question() {
+  return (
+    <h3>
+      Lets go for a <FaBeer className="text-blue-500 text-5xl" />?
+    </h3>
+  );
+}
+```
+
+## Accessibility (a11y)
+
+When using icons, it's important to ensure they are accessible to screen readers. 
+
+### Decorative Icons
+If an icon is purely decorative and doesn't convey extra meaning, you can hide it from screen readers by passing `aria-hidden="true"`:
+
+```jsx
+<FaBeer aria-hidden="true" />
+```
+
+### Semantic Icons
+If the icon conveys important information, you should provide a descriptive `title` or an `aria-label`:
+
+```jsx
+// Using the title prop:
+<FaBeer title="Beer icon" />
+
+// Using aria-label (and a wrapping element if needed):
+<span aria-label="Beer icon">
+  <FaBeer aria-hidden="true" />
+</span>
+```
+
+## Troubleshooting
+
+- **Icons are not rendering:** Ensure you are importing from the correct subfolder for the specific icon set. For example, `import { FaBeer } from "react-icons/fa"` instead of `react-icons`. Also check for any overriding global CSS.
+- **Large bundle size:** If you are importing from `react-icons/all`, this can bloat your bundle size. Always import from the specific library path (e.g., `react-icons/fa`, `react-icons/md`).
+- **Cannot find module 'react-icons/...'**: Make sure you have installed `react-icons` as a dependency (`npm install react-icons`). If you recently upgraded, try deleting `node_modules` and running your package manager install command again.
+
 ## Migrating from version 2 -> 3
 
 ### Change import style
