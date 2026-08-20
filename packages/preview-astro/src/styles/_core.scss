@@ -3,6 +3,7 @@
 }
 
 :root {
+  color-scheme: light;
   --color-brand: #e91e63;
   --color-link: #1971c2;
   --color-brand-rgb: 233, 30, 99;
@@ -15,6 +16,20 @@
   --color-gray-4: #808289;
   --sidebar-width: 18rem;
   --border-radius-md: 6px;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --color-brand: #f48fb1;
+  --color-link: #64b5f6;
+  --color-brand-rgb: 244, 143, 177;
+  --color-black: #f4f5f7;
+  --color-white: #1a1d21;
+  --color-gray-0: #101214;
+  --color-gray-1: #1a1d21;
+  --color-gray-2: #2b3036;
+  --color-gray-3: #3b424a;
+  --color-gray-4: #a0a2a8;
 }
 
 html,

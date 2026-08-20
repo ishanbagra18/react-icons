@@ -10,6 +10,7 @@ import { ClientRouter } from "astro:transitions";
 import { IconsManifest } from "react-icons";
 import BrandIcon from "./icon.astro";
 import { SearchInput } from "../components/searchinput";
+import { ThemeToggle } from "../components/ThemeToggle";
 
 const sortedManifest = IconsManifest.sort((a, b) =>
   a.name.localeCompare(b.name),
@@ -22,6 +23,20 @@ const sortedManifest = IconsManifest.sort((a, b) =>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
+    <script is:inline>
+      const applyTheme = () => {
+        const theme = localStorage.getItem("theme");
+        if (theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+        }
+      };
+      
+      applyTheme();
+      
+      document.addEventListener('astro:after-swap', applyTheme);
+    </script>
     <link rel="shortcut icon" href="/react-icons/favicon.png" />
     <meta name="theme-color" content="#e91e63" />
     <meta name="title" content="React Icons" />
@@ -50,8 +65,11 @@ const sortedManifest = IconsManifest.sort((a, b) =>
         </div>
       </div>
 
-      <div class="search p2">
-        <SearchInput client:load />
+      <div class="search p2" style="display: flex; gap: 8px;">
+        <div style="flex-grow: 1;">
+          <SearchInput client:load />
+        </div>
+        <ThemeToggle client:only="react" />
       </div>
 
       <!-- if sidebar open apply 'active' class -->
